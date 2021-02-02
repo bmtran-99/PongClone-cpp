@@ -37,9 +37,12 @@ namespace Pong
 
 	void Renderer::Update()
 	{
+		if (m_HUD->CheckWinner())
+			return;
+
 		m_HUD->OnUpdate();
 		player_left->OnUpdate();
 		player_right->OnUpdate();
-		ball->OnUpdate();
+		ball->OnUpdate(*player_left, *player_right);
 	}
 }

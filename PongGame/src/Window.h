@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Renderer.h"
+
 namespace Pong
 {
 	struct WindowProps
@@ -12,7 +14,7 @@ namespace Pong
 			: Title(title), Width(width), Height(height) {}
 	};
 
-	static WindowProps m_Props;
+	static WindowProps props;
 
 	class Window
 	{
@@ -20,12 +22,16 @@ namespace Pong
 		Window(const WindowProps& props = WindowProps());
 		~Window();
 
-		static inline unsigned int GetWidth() { return m_Props.Width; }
-		static inline unsigned int GetHeight() { return m_Props.Height; }
+		static inline unsigned int GetWidth() { return props.Width; }
+		static inline unsigned int GetHeight() { return props.Height; }
+
+		static inline Renderer& GetRenderer() { return *m_Renderer; }
 
 		void OnUpdate();
 
 	private:
 		void Init(const WindowProps& props);
+
+		static std::unique_ptr<Renderer> m_Renderer;
 	};
 }

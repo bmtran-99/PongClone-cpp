@@ -1,7 +1,9 @@
 #include "pong_pch.h"
 #include "Paddle.h"
 
-#define SPEED = 3;
+// keycodes
+#define VK_W 0x57
+#define VK_S 0x53
 
 namespace Pong
 {
@@ -27,6 +29,15 @@ namespace Pong
 
 	void Paddle::OnUpdate()
 	{
-
+		if (m_Position.x == 10.f)
+		{
+			if (GetAsyncKeyState(VK_W)) m_Position.y += SPEED;
+			if (GetAsyncKeyState(VK_S)) m_Position.y -= SPEED;
+		}
+		else
+		{
+			if (GetAsyncKeyState(VK_UP)) m_Position.y += SPEED;
+			if (GetAsyncKeyState(VK_DOWN)) m_Position.y -= SPEED;
+		}
 	}
 }

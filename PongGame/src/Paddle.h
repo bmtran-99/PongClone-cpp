@@ -22,8 +22,12 @@ namespace Pong
 		inline unsigned int GetPaddleWidth() { return m_Width; }
 		inline unsigned int GetPaddleHeight() { return m_Height; }
 
+		inline glm::vec2 GetPaddlePosition() { return m_Position; }
+
 	private:
 		unsigned int m_Width, m_Height;
+
+		const uint32_t SPEED = 3;
 
 		glm::vec2 m_Position;
 	};

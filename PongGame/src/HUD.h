@@ -9,18 +9,22 @@ namespace Pong
 		~HUD();
 
 		void OnUpdate();
-		void Draw(unsigned int width, unsigned int height, std::string& score);
-
-		inline static HUD& GetHUD() { return *m_Instance; }
+		void Draw(unsigned int width, unsigned int height, std::string& result);
 
 		inline unsigned int GetPlayer1Score() { return m_ScoreP1; }
 		inline unsigned int GetPlayer2Score() { return m_ScoreP2; }
 
-		void SetPlayerScore();
+		inline bool CheckWinner()
+		{ 
+			if (m_ScoreP1 == 10 || m_ScoreP2 == 10)
+				return true;
+			else return false;
+		}
+
 		std::string Dashboard();
 
 	private:
-		static HUD* m_Instance;
+		void SetPlayerScore();
 		std::string DisplayScore(unsigned int score);
 
 		unsigned int m_ScoreP1 = 0;

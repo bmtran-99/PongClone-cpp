@@ -6,21 +6,21 @@ const int INTERVAL = 1000 / 60;
 
 namespace Pong
 {
-	std::unique_ptr<Renderer> m_Renderer = std::make_unique<Renderer>();
+	std::unique_ptr<Renderer> Window::m_Renderer = std::make_unique<Renderer>();
 
 	void Draw()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glLoadIdentity();
 
-		m_Renderer->Draw();
+		Window::GetRenderer().Draw();
 
 		glutSwapBuffers();
 	}
 
 	void Update(int value)
 	{
-		m_Renderer->Update();
+		Window::GetRenderer().Update();
 
 		glutTimerFunc(INTERVAL, Update, 0);
 		glutPostRedisplay();
